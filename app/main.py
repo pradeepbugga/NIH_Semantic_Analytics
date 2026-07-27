@@ -187,8 +187,10 @@ async def activity_codes_multi_search(
     """
 
     try:
+
+        code_list = [c.strip().upper() for c in codes.split(",") if c.strip()]
         context = await get_activity_portfolio(
-            codes, code_registry=startup.GLOBAL_VALID_ACTIVITY_CODES
+            code_list, code_registry=startup.GLOBAL_VALID_ACTIVITY_CODES
         )
 
     except ValueError as e:
