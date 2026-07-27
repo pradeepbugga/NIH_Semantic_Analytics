@@ -43,7 +43,7 @@ async def get_activity_portfolio(codes: list[str], code_registry: list[dict]) ->
 
     tuple_codes = tuple(target_codes)
 
-    conn = await anyio.to_thread.run(get_db_connection)
+    conn = await anyio.to_thread.run_sync(get_db_connection)
     cur = conn.cursor()
 
     def run_database_operations():
@@ -147,7 +147,7 @@ async def get_activity_portfolio(codes: list[str], code_registry: list[dict]) ->
             conn.close()
 
     try:
-        years, funding, ontology_values, grants = await anyio.to_thread.run(
+        years, funding, ontology_values, grants = await anyio.to_thread.run_sync(
             run_database_operations
         )
 
