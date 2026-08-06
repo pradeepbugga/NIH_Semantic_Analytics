@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - classifier_prod
+      - main
 
   pull_request:
     branches:
       - classifier_prod
+      - main
 
 jobs:
   test:
